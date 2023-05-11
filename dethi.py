@@ -31,7 +31,7 @@ class TuLanh:
             self.__tkdien = bool(input())
             self.__dungtich = int(input())
             self.__gia = int(input())
-            print("/n")
+            print("\n")
         except ValueError: 
             print("Wrong value, please try again!!!")
             sys.exit()
@@ -53,6 +53,9 @@ class TuLanh:
 
     def layNhanHieu(self): 
         return self.__nhanhieu
+    
+    def get_gia(self):
+        return self.__gia
     
     @classmethod
     def layGia(self): 
@@ -111,7 +114,6 @@ class C002454(TuLanh):
         for i in danhsach:
             print(i)
         
-
     def testCase3():
         n = int(input("Nhap so tu lanh: "))
         while n <= 0 and n >= 100: 
@@ -125,7 +127,7 @@ class C002454(TuLanh):
             i.nhapThongTin()
             danhsach.append(i)
         
-        sorted(danhsach, key = lambda dist: dist.layGia(), reverse=True)    
+        danhsach.sort(key= lambda x: x.get_gia(), reverse= True)   
 
         for i in danhsach:
             print(i)
@@ -146,6 +148,11 @@ class C002454(TuLanh):
             for i in danhsach: 
                 pickle.dump(i, f)
     
+        with open('DsTuLanh.json', 'rb') as f: 
+            for i in danhsach: 
+                i = pickle.load(f)
+                print(i)
+
     def testCase5(): 
         n = int(input("Nhap so tu lanh: "))
         while n <= 0 and n >= 100: 
@@ -173,9 +180,11 @@ class C002454(TuLanh):
         print(f"Sharp: ({z})")  
 
 
-
-
-C002454.testCase5()
+# C002454.testCase1() \succeeded\
+# C002454.testCase2() \succeeded\
+# C002454.testCase3() \succeeded\
+# C002454.testCase4() \succeded\
+# C002454.testCase5() \succeeded\
 
 
 
