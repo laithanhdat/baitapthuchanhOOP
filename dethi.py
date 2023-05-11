@@ -1,5 +1,8 @@
 import math
 import sys
+from operator import itemgetter
+from operator import attrgetter
+import pickle
 
 class TuLanh: 
     __nhanhieu = str 
@@ -41,13 +44,17 @@ class TuLanh:
                 self.__tkdien= args[0].__tkdien
                 self.__dungtich = args[0].__dungtich
                 self.__gia = args[0].__gia
-       
+    
+    def __str__(self): 
+        return f"Nhan Hieu: {self.__nhanhieu}\nMa so: {self.__maso}\nNuoc san xuat: {self.__nuocsx}\nTiet kiem dien: {self.__tkdien}\nDung tich: {self.__dungtich}\nGia: {self.__gia}\n \n"
+    
     def hienThi(self): 
         print (f"Nhan Hieu: {self.__nhanhieu}\nMa so: {self.__maso}\nNuoc san xuat: {self.__nuocsx}\nTiet kiem dien: {self.__tkdien}\nDung tich: {self.__dungtich}\nGia: {self.__gia}\n \n")
 
     def layNhanHieu(self): 
         return self.__nhanhieu
     
+    @classmethod
     def layGia(self): 
         return self.__gia
     
@@ -95,31 +102,80 @@ class C002454(TuLanh):
         print(n)
         danhsach = []
         for i in range(n): 
-            i = TuLanh
+            i = TuLanh()
             i.nhapThongTin()
             danhsach.append(i)
-        # in danh sach theo chieu nguoc lai 
-        # for i in range[n]: 
-        #     danhsach[-1].hienThi()
+        
+        danhsach.reverse()
+
+        for i in danhsach:
+            print(i)
+        
 
     def testCase3():
         n = int(input("Nhap so tu lanh: "))
         while n <= 0 and n >= 100: 
             n = int(input("Qua so luong. Nhap lai so luong: "))
         print(n)
-        
-        danhsach = []
 
+        danhsach = []
+        
         for i in range(n): 
-            i = TuLanh
+            i = TuLanh()
             i.nhapThongTin()
             danhsach.append(i)
-        danhsach.sort(key= lambda dist: dist.layGia())
+        
+        sorted(danhsach, key = lambda dist: dist.layGia(), reverse=True)    
 
         for i in danhsach:
             print(i)
-        
+    
+    # chua chay duoc nhu mong muon 
+    def testCase4(): 
+        n = int(input("Nhap so tu lanh: "))
+        while n <= 0 and n >= 100: 
+            n = int(input("Qua so luong. Nhap lai so luong: "))
+        print(n)
+        danhsach = []
+        for i in range(n): 
+            i = TuLanh()
+            i.nhapThongTin()
+            danhsach.append(i)
 
+        with open('DsTuLanh.json', 'wb') as f: 
+            for i in danhsach: 
+                pickle.dump(i, f)
+    
+    def testCase5(): 
+        n = int(input("Nhap so tu lanh: "))
+        while n <= 0 and n >= 100: 
+            n = int(input("Qua so luong. Nhap lai so luong: "))
+        print(n)
+        danhsach = []
+        for i in range(n): 
+            i = TuLanh()
+            i.nhapThongTin()
+            danhsach.append(i)
+
+        x = 0 
+        y = 0
+        z = 0 
+        for i in danhsach: 
+            if i.layNhanHieu() == "LG": 
+                x = x +  1  
+            elif i.layNhanHieu() == "Panasonic":
+                y = y + 1
+            elif i.layNhanHieu() == "Sharp":
+                z= z + 1   
+        
+        print(f"LG: ({x})")                
+        print(f"Panasonic: ({y})")  
+        print(f"Sharp: ({z})")  
+
+
+
+
+C002454.testCase5()
 
 
 
