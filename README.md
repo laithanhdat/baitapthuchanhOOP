@@ -1,2 +1,2 @@
 # baitapthuchanhOOP
- This is my assignment files. 
+ This is my assignment repository. 
