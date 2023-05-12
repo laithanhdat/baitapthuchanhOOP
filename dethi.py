@@ -132,7 +132,6 @@ class C002454(TuLanh):
         for i in danhsach:
             print(i)
     
-    # chua chay duoc nhu mong muon 
     def testCase4(): 
         n = int(input("Nhap so tu lanh: "))
         while n <= 0 and n >= 100: 
@@ -174,6 +173,7 @@ class C002454(TuLanh):
                 y = y + 1
             elif i.layNhanHieu() == "Sharp":
                 z= z + 1   
+        # Try cungNhanHieu() function later
         
         print(f"LG: ({x})")                
         print(f"Panasonic: ({y})")  
